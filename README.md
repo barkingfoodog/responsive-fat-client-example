@@ -1,18 +1,21 @@
-# go-to-class
-A utility for quickly opening Omnis windows.
+# responsive-fat-client-example
+A sample library to demonstrate a responsive interface using the Omnis Studio fat client.
 
-![Go to Class](images/go_to_class.png)
+![Example](images/responsive_fat_client_example.gif)
 
 ## Installation
-1. Download `lib/go_to_class.lbs`
-1. Drop in your `startup` folder
+1. Download `lib/responsive_fat_client_example.lbs`
+1. Open with Omnis Studio 10.2 or later
 
 ## Usage
-1. Go to **Tools** -> **Add-Ons** -> **Go to Class...** or use the `command-g` or `ctrl-g` keyboard shortcut
-1. Select your library
-1. Type to find your classes
-1. Classes will be matched by names containing your search text
-1. Press F3 to modify the class or F8 to modify the methods
+1. Click between the panes
+1. Resize the window wide enough move to 2-up layout
+1. Resize to a smaller width to switch back to 1-up layout
+
+## Notes
+This library uses a technique of displaying panes using subwindows. These could be replaced with fields in container objects (e.g. a Paged Panes) directly on the window at the cost of less reusable code.
+
+A fanstastic upgrade would be to purchase Kelly Burgess' excellent [Dragster xcomp](http://www.kellyb.com/demos.html#DRAGSTER). This would allow firing the `$_layout()` method while the user resizes the window for a smoother experience.
 
 ## Contributing
-Please see our [guide to contributing](https://github.com/suransys/contributing).
+Pull requests are welcome!
