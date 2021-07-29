@@ -1,0 +1,58 @@
+# Switch to 2-up layout if we have enough width
+If $cinst.$width>=liWidthBreakpoint
+	Calculate liNewLayout as kLayout2up
+Else
+	# Otherwise choose the layout for our current pane
+	Calculate liNewLayout as pick(iiPane,kLayoutPane1,kLayoutPane2)
+End If
+
+# Layout the window accordingly
+Switch liNewLayout
+	Case kLayoutPane1
+		# Hide pane 2
+		Calculate $cinst.$objs.swPane2.$visible as kFalse
+		Calculate $cinst.$objs.swPane2.$edgefloat as kEFnone
+		
+		# Show pane 1
+		Calculate $cinst.$objs.swPane1.$visible as kTrue
+		Calculate $cinst.$objs.swPane1.$edgefloat as kEFposnClient
+		
+		# Show the buttons and divide evenly
+		Calculate $cinst.$objs.ppButtons.$visible as kTrue
+		Calculate $cinst.$objs.ppButtons.$objs.rbPane1.$width as $cinst.$objs.ppButtons.$width/2
+	Case kLayoutPane2
+		# Hide pane 2
+		Calculate $cinst.$objs.swPane1.$visible as kFalse
+		Calculate $cinst.$objs.swPane1.$edgefloat as kEFnone
+		
+		# Show pane 1
+		Calculate $cinst.$objs.swPane2.$visible as kTrue
+		Calculate $cinst.$objs.swPane2.$edgefloat as kEFposnClient
+		
+		# Show the buttons and divide evenly
+		Calculate $cinst.$objs.ppButtons.$visible as kTrue
+		Calculate $cinst.$objs.ppButtons.$objs.rbPane1.$width as $cinst.$objs.ppButtons.$width/2
+	Case kLayout2up
+		# Show pane 2
+		Calculate $cinst.$objs.swPane2.$visible as kTrue
+		Calculate $cinst.$objs.swPane2.$edgefloat as kEFposnRightToolBar
+		
+		# Show pane 1
+		Calculate $cinst.$objs.swPane1.$visible as kTrue
+		Calculate $cinst.$objs.swPane1.$edgefloat as kEFposnClient
+		
+		# Divide the panes evenly
+		Calculate $cinst.$objs.swPane2.$width as $cinst.$width/2
+		
+		# Hide the buttons
+		Calculate $cinst.$objs.ppButtons.$visible as kFalse
+		
+		# The minimum height does not include the button bar
+		Calculate liMinimumHeight as liMinimumHeight-$cinst.$objs.ppButtons.$height
+End Switch
+
+# Enforce a minimum height
+# This could be accomplished with dynamic scrollbars as well
+If $cinst.$height<liMinimumHeight
+	Calculate $cinst.$height as liMinimumHeight
+End If

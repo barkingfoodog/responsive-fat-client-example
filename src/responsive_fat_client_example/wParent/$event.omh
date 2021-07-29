@@ -1,0 +1,4 @@
+On evResized
+	# Resize to keep buttons/panes divided evenly
+	# and to switch from 1-up to 2-up layouts if needed
+	Do $cinst.$_layout()
